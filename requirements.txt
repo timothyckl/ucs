@@ -1,0 +1,7 @@
+opencv-python
+scikit-learn
+lightning
+lightning-bolts
+lightning-flash
+torchmetrics
+optuna
