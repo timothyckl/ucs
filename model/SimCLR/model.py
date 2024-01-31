@@ -191,21 +191,25 @@ class SimCLR(L.LightningModule):
         return loss
 
     def on_train_start(self):
+        '''on global train step 0, init cossim history artifact'''
         if self.hparams.coreset_select:
             # self.cossim_history = np.empty((self.trainer.max_epochs, self.n_train_samples))
             self.cossim_history = []
 
     def on_train_epoch_start(self):
+        '''on each train epoch, if coreset_select, init starting cossims to 0s'''
         if self.hparams.coreset_select:
             self.epoch_cossim = np.zeros(shape=(self.n_train_samples))
 
     def on_train_epoch_end(self):
+        '''after each train epoch, if coreset_select, row-wise concat previous cossims'''
         # keep epoch's cossim history
         if self.hparams.coreset_select:
-            self.epoch_cossim = self.epoch_cossim[self.epoch_cossim != 0]
+            self.epoch_cossim = self.epoch_cossim[self.epoch_cossim != 0]  # boolean mask here bcus of weird dataloader issue on batched data
             self.cossim_history.append(self.epoch_cossim)
         
     def on_train_end(self):
+        '''on final global train step, average cossims per sample by max epochs'''
         # average accumulated cossim
         if self.hparams.coreset_select:
             self.cossim_history = np.array(self.cossim_history)

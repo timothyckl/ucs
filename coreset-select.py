@@ -1,3 +1,8 @@
+'''
+TODO: revise for cifar10 benchmarks
+'''
+
+
 from model.SimCLR import SimCLR
 from model.SimCLRv2 import SimCLRv2
 from dataset import KMTDataModule
