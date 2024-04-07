@@ -17,7 +17,7 @@ python coreset-select.py
 ```
 
 > [!Note]
-> Your custom dataloader should implement the appropriate augmentation pipeline discussed in [A Simple Framework for Contrastive Learning of Visual Representations](https://arxiv.org/abs/2002.05709).
+> Your custom dataloader should implement the appropriate augmentation pipeline discussed in the [SimCLR paper](https://arxiv.org/abs/2002.05709).
 > This script also assumes you have the appropriate CUDA dependencies installed for training.
 
 ## References
