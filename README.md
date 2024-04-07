@@ -1,6 +1,6 @@
 # Unsupervised Coreset Selection
 
-An implementation of core-set selection for segmentation tasks.
+An implementation of core-set selection for image segmentation tasks.
 
 ## Install dependecies
 
