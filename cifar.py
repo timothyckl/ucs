@@ -1,3 +1,6 @@
+'''
+This is dataloader is a dummy and just for show, it should contain methods for augmentations during training
+'''
 import lightning as L
 import torch
 from torch.utils.data import DataLoader, random_split
@@ -24,8 +27,3 @@ class CIFAR10DataModule(L.LightningDataModule):
 
     def val_dataloader(self):
         return DataLoader(self.cifar10_val, batch_size=self.batch_size)
-
-
-cifar10 = CIFAR10DataModule("./data")
-
-print("ok")
