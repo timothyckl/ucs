@@ -1,6 +1,6 @@
 # Unsupervised Coreset Selection
 
-An implementation of core-set selection in [Extending Contrastive Learning to Unsupervised Coreset Selection](https://arxiv.org/abs/2103.03574)
+An implementation of core-set selection for segmentation tasks.
 
 ## Install dependecies
 
