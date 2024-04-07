@@ -1,8 +1,3 @@
-'''
-TODO: revise for cifar10 benchmarks
-'''
-
-
 from model.SimCLR import SimCLR
 from model.SimCLRv2 import SimCLRv2
 from cifar import CIFAR10DataModule
@@ -32,13 +27,6 @@ if __name__ == '__main__':
     # =========================
     # 1. Setup dataset
     # =========================
-    # dm = KMTDataModule(
-    #    data_dir=Path('./KMT-data'), 
-    #    batch_size=best_params['batch_size'], 
-    #    crop_size=best_params['crop_size'], 
-    #    coreset_select=CORESET_SELECT
-    # )
-    
     dm = CIFAR10DataModule(data_dir="", batch_size=32,)
     dm.setup()
 
@@ -56,23 +44,23 @@ if __name__ == '__main__':
     # =========================
     # 3. Fit trainer
     # =========================
-    # logger = TensorBoardLogger("tb_logs", name="CoresetSelect", default_hp_metric=True)
+    logger = TensorBoardLogger("tb_logs", name="CoresetSelect", default_hp_metric=True)
 
-    # trainer = Trainer(
-    #    max_epochs=300, 
-    #    logger=logger,
-    #    enable_progress_bar=True, 
-    #    gpus=1,
-    #    precision='64',
-    #    limit_test_batches=0
-    # )
+    trainer = Trainer(
+       max_epochs=300, 
+       logger=logger,
+       enable_progress_bar=True, 
+       gpus=1,
+       precision='64',
+       limit_test_batches=0
+    )
 
-    # trainer.fit(model, dm)
+    trainer.fit(model, dm)
 
     # =========================
     # 4. Get coreset
     # =========================
-    # loader, cossim_avg, cossim_hist, sorted_indices = dm.get_coreset()
+    loader, cossim_avg, cossim_hist, sorted_indices = dm.get_coreset()
 
     # save sorted dataloader, order is maintained even after saving
-    # torch.save(loader, 'coreset_dataloader.pth')
+    torch.save(loader, 'coreset_dataloader.pth')
